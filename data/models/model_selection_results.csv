@@ -1,0 +1,7 @@
+model,best_params,cv_best_score
+SVC,"{'C': 1, 'gamma': 'scale', 'kernel': 'linear'}",0.843917981880945
+RandomForest,"{'max_depth': 8, 'min_samples_split': 5, 'n_estimators': 200}",0.8422828200605978
+LogisticRegression,"{'C': 1.0, 'penalty': 'l2'}",0.8142039373520854
+DecisionTree,"{'max_depth': 4, 'min_samples_split': 5}",0.7302725395317988
+KNeighbors,"{'n_neighbors': 7, 'weights': 'distance'}",0.6920487948265726
+GaussianNB,{'var_smoothing': 1e-06},0.6839864182456775
