@@ -7,23 +7,7 @@ from sklearn.metrics import classification_report, roc_auc_score, accuracy_score
 # Unified hyperparameter tuning function for both Decision Tree and Random Forest models
 
 def optimize_tree_model(model_type, n_splits, X_train, y_train, n_repeats=1, n_iter_search=50, scoring='auc'):
-    """
-    Performs hyperparameter tuning for Decision Tree ('DT') or Random Forest ('RF') 
-    using RandomizedSearchCV.
 
-    Args:
-        model_type (str): 'DT' or 'RF'.
-        n_splits (int): Number of folds for cross-validation.
-        X_train (np.array/pd.DataFrame): Training features.
-        y_train (np.array/pd.Series): Training targets.
-        n_repeats (int): Number of times to repeat the K-Fold.
-        n_iter_search (int): Number of parameter settings sampled.
-        scoring (str): The metric to optimize ('auc' or 'balanced_accuracy').
-
-    Returns:
-        sklearn model: The best estimator found by the search.
-    """
-    
     # Define Model and Parameter Grid
     if model_type.upper() == 'DT':
         # Initialize a baseline Decision Tree model for tunining using GridSeachCV
