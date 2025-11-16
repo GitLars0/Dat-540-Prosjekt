@@ -54,21 +54,37 @@ Hello, and welcome to our code walkthrough for the gallstone disease prediction 
 
 Let’s start by looking at our project structure. We have separate folders for raw data, processed data, models, and notebooks. Each notebook has a specific role, such as data exploration, preprocessing, model training, and interpretation.
 
-**Data Preprocessing**
+**Notebook 01: Data Exploration**
 
-We begin by loading the dataset and standardizing column names for consistency. We check for missing values and outliers, using medical plausibility to ensure data quality. Next, we apply the StandardScaler to normalize our features, which is important for algorithms like SVM and KNN. For feature selection, we use the ANOVA F-test and select features with an F-score above 0.70. This helps us balance model complexity and interpretability.
+We begin our workflow in Notebook 01, which is dedicated to data exploration. Here, we load the raw dataset and perform an initial analysis to understand its structure and contents. We examine the distribution of features, check for missing values, and visualize key variables using summary statistics and plots. This step helps us identify potential outliers, correlations, and patterns that inform our preprocessing and modeling decisions in later notebooks.
+
+**Notebook 02: Preprocessing & Feature Engineering**
+
+In Notebook 02, we focus on cleaning and transforming the data. We handle outliers, encode categorical variables, and apply feature scaling. Feature engineering is performed to create new variables or modify existing ones based on domain knowledge. We also implement feature selection techniques to reduce dimensionality and improve model performance. This notebook prepares the dataset for robust modeling in subsequent steps.
 
 **Baseline Modeling**
 
 Before performing any hyperparameter tuning, we first ran each model using their default settings to establish baseline performance. This allowed us to compare the initial results across all algorithms and understand how each model performed out-of-the-box. These baseline scores provided a reference point for evaluating the impact of further optimization.
 
+**Notebook 03: Modeling Baselines**
+
+Notebook 03 is dedicated to establishing baseline model performance. We train several machine learning algorithms using default parameters, without hyperparameter tuning, to compare their initial results. This provides a reference point for each model and helps us identify which algorithms are most promising for further optimization.
+
 **Model Implementation and Training**
 
 Now, we set up several classifiers, including Logistic Regression, Decision Tree, Random Forest, SVM, and Gradient Boosting. We use GridSearchCV for hyperparameter optimization, with 10-fold stratified cross-validation to get robust performance estimates. We carefully choose parameter grids for each model to find the best settings.
 
+**Notebook 04: Model Selection & Tuning**
+
+In Notebook 04, we perform hyperparameter tuning and model selection. We use grid search and cross-validation to optimize each algorithm’s parameters, aiming to maximize predictive performance. The best models are selected based on validation and test metrics, and the results are saved for interpretation and reporting.
+
 **Model Evaluation and Interpretation**
 
 After training, we evaluate our models using metrics like accuracy, precision, recall, F1-score, and ROC-AUC. We generate plots and tables to visualize performance and compare results. We also extract feature importances and coefficients to understand which variables are most predictive.
+
+**Notebook 05: Interpretation & Reporting**
+
+Notebook 05 focuses on interpreting the final model and reporting results. We analyze feature importances, visualize evaluation metrics, and summarize the findings. This notebook provides narrative context and clinical relevance, ensuring the results are understandable and actionable for stakeholders.
 
 **Interpreting Outputs**
 
