@@ -56,27 +56,19 @@ Let’s start by looking at our project structure. We have separate folders for 
 
 **Notebook 01: Data Exploration**
 
-We begin our workflow in Notebook 01, which is dedicated to data exploration. Here, we load the raw dataset and perform an initial analysis to understand its structure and contents. We examine the distribution of features, check for missing values, and visualize key variables using summary statistics and plots. This step helps us identify potential outliers, correlations, and patterns that inform our preprocessing and modeling decisions in later notebooks.
+In Notebook 01, we perform an initial exploration of the raw dataset. We load the data and verify its schema, types, and target encoding. Basic summary statistics and distributions are generated for all features, and we check for missing values to confirm data completeness. We assess class balance in the target variable and visualize distributions using histograms. Correlation analysis is performed to identify relationships between features and with the target, including a heatmap and bar plot of absolute correlations. We also compare per-class means for numeric features to highlight differences between patients with and without gallstones. This notebook provides a comprehensive overview of the dataset, guiding our decisions for preprocessing and modeling in subsequent steps.
 
 **Notebook 02: Preprocessing & Feature Engineering**
 
-In Notebook 02, we focus on cleaning and transforming the data. We handle outliers, encode categorical variables, and apply feature scaling. Feature engineering is performed to create new variables or modify existing ones based on domain knowledge. We also implement feature selection techniques to reduce dimensionality and improve model performance. This notebook prepares the dataset for robust modeling in subsequent steps.
-
-**Baseline Modeling**
-
-Before performing any hyperparameter tuning, we first ran each model using their default settings to establish baseline performance. This allowed us to compare the initial results across all algorithms and understand how each model performed out-of-the-box. These baseline scores provided a reference point for evaluating the impact of further optimization.
+In Notebook 02, we focus on preparing the dataset for modeling. We start by cleaning column names for consistency and encoding the target variable as binary (0/1). Outlier detection is performed using the IQR method, and we assess medical plausibility to decide whether to keep, remove, or robustly scale outliers. We split the data into train, validation, and test sets, ensuring stratification for balanced classes. Feature scaling is applied using either StandardScaler or RobustScaler, and all processed arrays and feature names are saved for reuse. We also provide options for conservative outlier removal and demonstrate how to create new features based on domain knowledge. This notebook ensures the data is clean, well-structured, and ready for baseline modeling and further analysis.
 
 **Notebook 03: Modeling Baselines**
 
-Notebook 03 is dedicated to establishing baseline model performance. We train several machine learning algorithms using default parameters, without hyperparameter tuning, to compare their initial results. This provides a reference point for each model and helps us identify which algorithms are most promising for further optimization.
+In Notebook 03, we establish baseline performance for a range of machine learning models, including Logistic Regression, Decision Tree, Random Forest, K-Nearest Neighbors, SVM, Gaussian Naive Bayes, and Gradient Boosting. We train each model using default parameters, without any hyperparameter tuning, to provide a fair comparison of their out-of-the-box performance. For each model, we record key metrics such as accuracy, precision, recall, F1-score, and ROC-AUC on the validation set. We visualize the results in tables and ROC curves, and analyze confusion matrices to understand the strengths and weaknesses of each approach. This notebook also introduces feature selection using ANOVA F-score, allowing us to compare model performance before and after dimensionality reduction. The insights gained here guide our choices for further optimization in subsequent notebooks.
 
-**Model Implementation and Training**
+**Notebook 04: Model Selection & Hyperparameter Tuning**
 
-Now, we set up several classifiers, including Logistic Regression, Decision Tree, Random Forest, SVM, and Gradient Boosting. We use GridSearchCV for hyperparameter optimization, with 10-fold stratified cross-validation to get robust performance estimates. We carefully choose parameter grids for each model to find the best settings.
-
-**Notebook 04: Model Selection & Tuning**
-
-In Notebook 04, we perform hyperparameter tuning and model selection. We use grid search and cross-validation to optimize each algorithm’s parameters, aiming to maximize predictive performance. The best models are selected based on validation and test metrics, and the results are saved for interpretation and reporting.
+In Notebook 04, we perform comprehensive model selection and hyperparameter tuning. We use grid search with 10-fold stratified cross-validation to optimize the parameters for each algorithm, including Logistic Regression, Random Forest, SVM, K-Nearest Neighbors, Decision Tree, Gaussian Naive Bayes, Gradient Boosting, and AdaBoost. For each model, we record cross-validation metrics and select the best configuration based on ROC-AUC. We then evaluate all optimized models on the untouched test set, comparing their accuracy, precision, recall, F1-score, and ROC-AUC. Detailed analysis is performed for the top test model, including confusion matrix and ROC curve visualization. Finally, we save the best model and a comprehensive results table for further interpretation and reporting. This notebook ensures that our final model selection is robust, unbiased, and generalizes well to unseen data.
 
 **Model Evaluation and Interpretation**
 
@@ -84,7 +76,7 @@ After training, we evaluate our models using metrics like accuracy, precision, r
 
 **Notebook 05: Interpretation & Reporting**
 
-Notebook 05 focuses on interpreting the final model and reporting results. We analyze feature importances, visualize evaluation metrics, and summarize the findings. This notebook provides narrative context and clinical relevance, ensuring the results are understandable and actionable for stakeholders.
+In Notebook 05, we focus on interpreting the final model and communicating results. We load the best model and its selection metrics, then evaluate its performance on the test set using a full suite of metrics: accuracy, precision, recall, specificity, F1-score, and ROC-AUC. We extract and visualize model-specific feature importances or coefficients, and perform permutation importance analysis to identify the most predictive features in a model-agnostic way. The notebook includes clear visualizations such as bar charts and ROC curves, and provides a detailed narrative summary of the results, including clinical relevance and implications. We also save the final model for deployment and ensure all findings are presented in a format suitable for stakeholders and future use. This notebook bridges the gap between technical results and practical, clinical interpretation.
 
 **Interpreting Outputs**
 
